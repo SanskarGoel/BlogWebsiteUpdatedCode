@@ -5,10 +5,8 @@ import Write from "./write/Write";
 import Settings from "./pages/settings/Settings";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import Sidebar from "./components/sidebar/Sidebar";
 import {
-  BrowserRouter as Router,Switch,Route,Link} from "react-router-dom";
-import Post from "./components/post/Post";
+  BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
 function App() {
