@@ -12,9 +12,18 @@ router.post("/register",async(req,res)=>{ //handles post request on this route(u
             email:req.body.email,
             password: hashedPass,
         })
-        const user=await newUser.save();//this saves the newly created user instance to the database using the save() method provided by Mongoose. 
-        //The saved user object is then assigned to the user variable.
-        res.status(200).json(user)//sends a response to the user/client with user object(in json format)
+        const userCheck=await User.findOne({username: req.body.username});
+        if(userCheck)
+        {
+          return res.status(400).json("Username already exists");
+        }
+        else
+        {
+          const user=await newUser.save();//this saves the newly created user instance to the database using the save() method provided by Mongoose. 
+          //The saved user object is then assigned to the user variable.
+          res.status(200).json(user)//sends a response to the user/client with user object(in json format)
+        }
+        
     }catch(err){
         res.status(500).json(err);
     } 
@@ -23,14 +32,18 @@ router.post("/register",async(req,res)=>{ //handles post request on this route(u
 router.post("/login", async (req, res) => {
     try {
       const user = await User.findOne({ username: req.body.username });
+      console.log(200)
       if (!user) {
         return res.status(400).json("Wrong credentials!");
       }
+      console.log(100)
       const validated = await bcrypt.compare(req.body.password, user.password);
       if (!validated) {
         return res.status(400).json("Wrong credentials!");
       }
       const { password, ...others } = user._doc;
+      console.log(user._doc)
+      console.log("abc")
       res.status(200).json(others);
     } catch (err) {
       res.status(500).json(err);

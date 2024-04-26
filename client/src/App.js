@@ -5,8 +5,7 @@ import Write from "./write/Write";
 import Settings from "./pages/settings/Settings";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import {
-  BrowserRouter as Router,Switch,Route} from "react-router-dom";
+import { BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
 function App() {
@@ -14,7 +13,9 @@ function App() {
   return ( 
     <Router>
       <TopBar/>
-      <Switch>
+      <Switch> 
+      {/* The Switch component ensures that only one route is rendered at a time. Once a match is found, it stops iterating through its 
+      children and renders the matched route. This prevents multiple routes from being rendered simultaneously. */}
         <Route exact path="/">{/*mentioned exact because if for eg we go to /register page then also it opens home*/}
           <Home/>
         </Route>
@@ -22,9 +23,7 @@ function App() {
         <Route path="/login">{user?<Home/>: <Login/>}</Route>
         <Route path="/write">{user?<Write/>: <Register/>}</Route>
         <Route path="/settings">{user?<Settings/>: <Register/>}</Route>
-        <Route path="/settings">
-          <Settings/>
-        </Route>
+        <Route path="/settings"> <Settings/> </Route>
         <Route path="/post/:postId">
           <Single/>
         </Route>

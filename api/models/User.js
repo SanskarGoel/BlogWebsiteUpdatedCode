@@ -23,7 +23,7 @@ const UserSchema=new mongoose.Schema(
             default:""
         }
     },
-    {timestamps:true}
+    {timestamps:true}//so that we get the createdAt and updatedAt in the database
 );
 module.exports=mongoose.model("User",UserSchema);//exporting model(UserSchema) by the name User(can be exported by name x also even if file name was User.js)
 // use of 26th line -->

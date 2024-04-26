@@ -2,8 +2,8 @@
 //when we have multiple components in our project and login wala part bhi ek component hota hai, now when user
 //logins then the rest of the application must get to know that the user is logged in so we have to display data
 //accordingly like dont't display register and login options when user is logged in 
-//so to tell rest components that user is logged in we have to pass props through all the necessary componets
-//so this can make ou code complex to avoid it we can use context api which  
+//so to tell rest components that user is logged in we have to pass props through all the necessary components
+//so this can make your code complex to avoid it we can use context api which  
 //By exporting the Context object, it can be accessed and used by other components within the application.
 // Context APIs in React are a set of features that allow for global state management and sharing data between components without explicitly passing props through every level of the component tree
 import Reducer from "./Reducer";

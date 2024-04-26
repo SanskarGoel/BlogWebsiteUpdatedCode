@@ -8,14 +8,14 @@ import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Home() {
   const [posts, setPosts] = useState([]); //The posts variable will hold the data fetched from the server and The setPosts function is a setter function provided by the useState hook to update the value of posts.as initilally posts is assigned [] empty array
-  const location = useLocation();
+  const location = useLocation();//returns an object containing info about current URL
   // console.log(location)
-  const search = location.search;
+  const search = location.search;//?user=prince
   useEffect(() => {
     const fetchPosts = async () => {
       //fetchPosts is an asynchronous function that sends an HTTP GET request to the specified URL
-      const res = await axios.get(
-        "https://blogging-zx1s.onrender.com/api/posts" + search
+      const res = await axios.get(//axios is used to make http requests like get/post/update/delete to a server
+        `${process.env.REACT_APP_BACKEND_URL}/api/posts` + search
       ); //matlab frontend se backend ko request bhejta jisse ham databse ko access kar paate hain and other things also
       setPosts(res.data); //setPosts updates the value of posts, initially post is empty object/array
       // console.log(typeof(posts))
@@ -29,7 +29,7 @@ export default function Home() {
       <Header />
       <div className="home">
         <Posts posts={posts} /> {/*passing props through the Posts component */}
-        <Sidebar />
+        <Sidebar/>
       </div>
     </>
   );

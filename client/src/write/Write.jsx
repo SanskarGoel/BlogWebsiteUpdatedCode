@@ -17,11 +17,11 @@ export default function Write() {
     };
     try {
       const res = await axios.post(
-        "https://blogging-zx1s.onrender.com/api/posts",
+        `${process.env.REACT_APP_BACKEND_URL}/api/posts`,
         newPost
       );
       window.location.replace(
-        "https://blogging-site.netlify.app/post/" + res.data._id
+        `${process.env.REACT_APP_FRONTEND_URL}/post/` + res.data._id
       );
     } catch (err) {}
   };

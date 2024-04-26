@@ -7,23 +7,25 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(false);
     try {
       const res = await axios.post(
-        "https://blogging-zx1s.onrender.com/api/auth/register",
+        `${process.env.REACT_APP_BACKEND_URL}/api/auth/register`,
         {
           username, //when we have x: x type of situation then just write x
           email,
           password,
         } // we pass an object containing username,email,password like we used to do in postman
       );
-      // console.log(res.data)
+      console.log(res.data)
       if (res.data) {
         window.location.replace("/login"); // means if there is no error in registration then this redirects the usser to login page
       }
     } catch (err) {
+
       setError(true); //error generated if some error occurs or same username/email used
     }
   };
@@ -33,7 +35,7 @@ export default function Register() {
       <form className="registerForm" onSubmit={handleSubmit}>
         {" "}
         {/*we have defined onSubmit which means on submitting this form handleSubmit fn will be executed */}
-        <label>Username</label>
+        <label>Username*</label>
         <input
           type="text"
           className="registerInput"
@@ -41,14 +43,14 @@ export default function Register() {
           onChange={(e) => setUsername(e.target.value)} //so whenever we write something in input field then the
           // setUsername automatically updates the value of username to that(what we write in username)
         />
-        <label>Email</label>
+        <label>Email*</label>
         <input
           type="text"
           className="registerInput"
           placeholder="Enter your email..."
           onChange={(e) => setEmail(e.target.value)}
         />
-        <label>Password</label>
+        <label>Password*</label>
         <input
           type="password"
           className="registerInput"
@@ -61,10 +63,15 @@ export default function Register() {
       </form>
       <button className="registerLoginButton">
         <Link className="link" to="/login">
-          Login
+          Login {/*used to display login button on top right corner*/ }
         </Link>
       </button>
-      {error && <span>Something Went Wrong!</span>}
+      {error && 
+      <div>
+        <span>Something Went Wrong!</span>
+        <span>(Maybe the username is already taken)</span>
+      </div>
+      }
     </div>
   );
 }

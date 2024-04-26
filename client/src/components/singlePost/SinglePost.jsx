@@ -18,7 +18,7 @@ export default function SinglePost() {
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get(
-        "https://blogging-zx1s.onrender.com/api/posts/" + path
+        `${process.env.REACT_APP_BACKEND_URL}/api/posts/` + path
       ); //getPost is an asynchronous function that sends an HTTP GET request to the specified URL
       setPost(res.data); //setPost updates the value of post
       //initially post is empty object/array
@@ -26,19 +26,19 @@ export default function SinglePost() {
       setDesc(res.data.desc);
     };
     getPost();
-  }, [path]); //DOUBT WHY WE WRITE SOMETHING IN BRACKETS like [path]
+  }, [path]); 
   const handleDelete = async () => {
     try {
       await axios.delete(
-        "https://blogging-zx1s.onrender.com/api/posts/" + path,
+        `${process.env.REACT_APP_BACKEND_URL}/api/posts/` + path,
         { data: { username: user.username } }
       );
-      window.location.replace("https://blogging-site.netlify.app/");
+      window.location.replace(process.env.REACT_APP_FRONTEND_URL);
     } catch (err) {}
   };
   const handleUpdate = async () => {
     try {
-      await axios.put("https://blogging-zx1s.onrender.com/api/posts/" + path, {
+      await axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/posts/` + path, {//making http put request to the backend server
         username: user.username,
         title: title,
         desc: desc,
@@ -109,6 +109,7 @@ export default function SinglePost() {
         {updateMode && (
           <button className="singlePostButton" onClick={handleUpdate}>
             Update
+            {/* {console.log(user)} */}
           </button>
         )}
       </div>

@@ -16,7 +16,7 @@ export default function Post({post}) {//post is a particular post
           <span className="postTitle">{post.title}</span>
         </Link>
         <hr/>
-        <span className="postDate">{new Date(post.createdAt).toDateString()}</span>{/*shows when the post was created */}
+        <span className="postDate">{new Date(post.createdAt).toDateString()}</span> {/* shows when the post was created */}
       </div>
       <p className="postDesc">
         {post.desc}
