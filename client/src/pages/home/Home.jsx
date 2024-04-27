@@ -29,7 +29,7 @@ export default function Home() {
       <Header />
       <div className="home">
         <Posts posts={posts} /> {/*passing props through the Posts component */}
-        <Sidebar/>
+        {/* <Sidebar/> */}
       </div>
     </>
   );
