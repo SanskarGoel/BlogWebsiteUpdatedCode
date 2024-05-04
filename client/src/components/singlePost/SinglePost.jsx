@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Context } from "../../context/Context";
 import { useContext } from "react";
+// import Sidebar from "../sidebar/Sidebar";
+// import Sidebar from '../six`debar/sidebar.jsx';
 
 export default function SinglePost() {
   const location = useLocation();
@@ -49,6 +51,7 @@ export default function SinglePost() {
   };
   return (
     <div className="singlePost">
+      {/* <Sidebar /> */}
       <div className="singlePostWrapper">
         <img
           src="https://www.shutterstock.com/image-photo/bloggingblog-concepts-ideas-white-worktable-260nw-1029506242.jpg"
